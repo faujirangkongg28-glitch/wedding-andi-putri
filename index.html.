@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff7f5">
+<title>Andi & Putri | Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #e8b7bd;
+  --rose: #b86f7c;
+  --sage: #74866c;
+  --cream: #fff8f4;
+  --dark: #51433f;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  text-align: center;
+  line-height: 1.8;
+}
+
+button, input, textarea, select { font: inherit; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  color: white;
+  background:
+    linear-gradient(#49332d70, #49332d88),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=85')
+    center/cover;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.cover.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cover .small {
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+
+.cover h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(65px, 12vw, 105px);
+  font-weight: 400;
+  margin: 15px 0;
+  animation: float 3s ease-in-out infinite;
+}
+
+.cover p { max-width: 340px; }
+
+button, .btn {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  background: var(--rose);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: .3s;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+.cover button {
+  background: white;
+  color: var(--rose);
+  margin-top: 24px;
+}
+
+main { display: none; overflow: hidden; }
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px;
+  background:
+    linear-gradient(#fff7f2a6, #fff7f2d9),
+    url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1200&q=80')
+    center/cover;
+}
+
+h1, h2, .script {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+}
+
+.hero h1, .script { color: var(--rose); }
+
+.hero h1 { font-size: clamp(65px, 13vw, 100px); }
+
+h2 {
+  font-size: 49px;
+  line-height: 1.4;
+  color: var(--rose);
+  margin: 10px 0 20px;
+}
+
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.flower {
+  font-size: 30px;
+  margin: 12px 0;
+  color: var(--rose);
+}
+
+section { padding: 75px 20px; }
+
+section:nth-child(even) { background: #fff0ed; }
+
+.container { max-width: 900px; margin: auto; }
+
+.intro { max-width: 570px; margin: auto; }
+
+.card {
+  background: #fffdf9;
+  border: 1px solid #f0d9d5;
+  border-radius: 20px;
+  padding: 28px 22px;
+  max-width: 570px;
+  margin: 25px auto;
+  box-shadow: 0 8px 28px #80544b0a;
+}
+
+.names {
+  font: 42px 'Great Vibes', cursive;
+  color: var(--rose);
+}
+
+.portrait {
+  width: min(100%, 250px);
+  height: 300px;
+  object-fit: cover;
+  border-radius: 150px 150px 15px 15px;
+  margin: 20px auto;
+  display: block;
+}
+
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px auto;
+}
+
+.time {
+  background: white;
+  border: 1px solid #f0d9d5;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 72px;
+}
+
+.time strong { display: block; font-size: 24px; color: var(--rose); }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 700px;
+  margin: 25px auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.gallery img:first-child {
+  grid-column: span 2;
+  height: 310px;
+}
+
+.date {
+  font: 25px 'Playfair Display', serif;
+  color: var(--sage);
+  margin: 12px 0;
+}
+
+.bank {
+  background: linear-gradient(135deg, #fff, #fbe9e7);
+  border: 1px solid #ead2cf;
+  border-radius: 16px;
+  padding: 24px 18px;
+  margin: 20px auto;
+  max-width: 420px;
+}
+
+.bank-logo {
+  font: 600 22px 'Playfair Display', serif;
+  color: var(--sage);
+}
+
+.account {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+
+form { max-width: 500px; margin: 20px auto; }
+
+input, textarea, select {
+  width: 100%;
+  border: 1px solid #e6ceca;
+  background: white;
+  border-radius: 10px;
+  padding: 13px;
+  margin: 7px 0;
+  color: var(--dark);
+}
+
+textarea { resize: vertical; }
+
+.guest {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+  margin: 12px auto;
+  max-width: 500px;
+  overflow-wrap: anywhere;
+}
+
+.guest strong { color: var(--rose); }
+
+footer {
+  padding: 45px 20px;
+  background: #52654f;
+  color: white;
+}
+
+footer .script { color: white; font-size: 53px; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media(max-width:480px) {
+  section { padding: 60px 17px; }
+  .gallery img { height: 180px; }
+  .gallery img:first-child { height: 230px; }
+  .card { padding: 23px 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- COVER PEMBUKA -->
+<div class="cover" id="cover">
+  <p class="small">THE WEDDING OF</p>
+  <div class="flower">❀</div>
+  <h1>Andi &amp; Putri</h1>
+  <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
+  <p style="margin-top:8px">Dengan penuh kebahagiaan, kami mengundang Anda untuk hadir di hari istimewa kami.</p>
+  <button onclick="bukaUndangan()">✉ Buka Undangan</button>
+</div>
+
+<main id="main">
+
+<!-- PEMBUKA -->
+<header class="hero">
+  <p class="eyebrow">WE ARE GETTING MARRIED</p>
+  <div class="flower">❀</div>
+  <h1>Andi &amp; Putri</h1>
+  <p>20 Desember 2026</p>
+  <div class="flower">❦</div>
+  <p>Dua hati, satu janji, selamanya dalam cinta.</p>
+  <button onclick="document.getElementById('mempelai').scrollIntoView({behavior:'smooth'})">
+    Lihat Undangan ↓
+  </button>
+</header>
+
+<!-- SALAM -->
+<section>
+  <div class="container intro reveal">
+    <p class="eyebrow">ASSALAMUALAIKUM WARAHMATULLAHI WABARAKATUH</p>
+    <div class="flower">❀</div>
+    <p>
+      Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud
+      menyelenggarakan pernikahan putra-putri kami.
+      Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
+      berkenan hadir dan memberikan doa restu.
+    </p>
+  </div>
+</section>
+
+<!-- MEMPELAI -->
+<section id="mempelai">
+  <div class="container reveal">
+    <p class="eyebrow">THE BRIDE &amp; THE GROOM</p>
+    <h2>Mempelai</h2>
+
+    <div class="card">
+      <img class="portrait"
+        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+        alt="Foto ilustrasi mempelai wanita">
+      <div class="names">Putri</div>
+      <p>Putri dari Bapak [Nama Ayah] dan Ibu [Nama Ibu]</p>
+
+      <div class="flower">&amp;</div>
+
+      <img class="portrait"
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+        alt="Foto ilustrasi mempelai pria">
+      <div class="names">Andi</div>
+      <p>Putra dari Bapak [Nama Ayah] dan Ibu [Nama Ibu]</p>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section>
+  <div class="container reveal">
+    <p class="eyebrow">SAVE THE DATE</p>
+    <h2>Menuju Hari Bahagia</h2>
+    <p>Minggu, 20 Desember 2026</p>
+
+    <div class="countdown" id="countdown">
+      <div class="time"><strong id="days">0</strong>Hari</div>
+      <div class="time"><strong id="hours">0</strong>Jam</div>
+      <div class="time"><strong id="minutes">0</strong>Menit</div>
+      <div class="time"><strong id="seconds">0</strong>Detik</div>
+    </div>
+    <p id="countdownMessage"></p>
+
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Andi+dan+Putri&dates=20261220T010000Z/20261220T080000Z">
+       Tambahkan ke Google Calendar
+    </a>
+  </div>
+</section>
+
+<!-- GALERI -->
+<section>
+  <div class="container reveal">
+    <p class="eyebrow">OUR MEMORIES</p>
+    <h2>Galeri Cinta</h2>
+    <p>Sepenggal kisah menuju selamanya.</p>
+
+    <div class="gallery">
+      <img loading="lazy"
+        src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80"
+        alt="Dekorasi pernikahan">
+      <img loading="lazy"
+        src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=600&q=80"
+        alt="Bunga pernikahan">
+      <img loading="lazy"
+        src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80"
+        alt="Momen pernikahan">
+    </div>
+    <p style="font-size:12px">Foto di atas hanya contoh. Ganti dengan foto kalian sendiri.</p>
+  </div>
+</section>
+
+<!-- ACARA -->
+<section>
+  <div class="container reveal">
+    <p class="eyebrow">JOIN OUR CELEBRATION</p>
+    <h2>Waktu &amp; Tempat</h2>
+
+    <div class="card">
+      <div class="flower">❀</div>
+      <h3>Akad Nikah</h3>
+      <p class="date">Minggu, 20 Desember 2026</p>
+      <p>Pukul 08.00 WIB – selesai</p>
+      <div class="flower">❦</div>
+      <h3>Resepsi</h3>
+      <p class="date">Minggu, 20 Desember 2026</p>
+      <p>Pukul 11.00–14.00 WIB</p>
+      <hr style="border:0;border-top:1px solid #eadbd5;margin:25px 0">
+      <h3>Gedung Pernikahan</h3>
+      <p>[Nama Gedung]</p>
+      <p>[Alamat lengkap acara]</p>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=Gedung+Pernikahan">
+         📍 Buka Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WEDDING GIFT -->
+<section id="gift">
+  <div class="container reveal">
+    <p class="eyebrow">A LITTLE GIFT OF LOVE</p>
+    <h2>Wedding Gift</h2>
+    <div class="flower">🎁</div>
+    <p class="intro">
+      Doa restu Anda merupakan hadiah terindah bagi kami.
+      Namun, apabila Anda ingin berbagi tanda kasih,
+      kami menyediakan informasi rekening berikut.
+    </p>
+
+    <div class="bank">
+      <div class="bank-logo">BANK BCA</div>
+      <p>Nomor Rekening</p>
+      <div class="account" id="rekening1">1234567890</div>
+      <p>a.n. Andi</p>
+      <button onclick="salin('rekening1',this)">📋 Salin Nomor Rekening</button>
+    </div>
+
+    <div class="bank">
+      <div class="bank-logo">BANK BRI</div>
+      <p>Nomor Rekening</p>
+      <div class="account" id="rekening2">0987654321</div>
+      <p>a.n. Putri</p>
+      <button onclick="salin('rekening2',this)">📋 Salin Nomor Rekening</button>
+    </div>
+
+    <p style="font-size:12px;margin-top:15px">
+      Catatan: rekening di atas hanyalah data contoh. Ganti sebelum undangan dibagikan.
+    </p>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section>
+  <div class="container reveal">
+    <p class="eyebrow">KINDLY RSVP</p>
+    <h2>Konfirmasi Kehadiran</h2>
+    <p>Mohon isi konfirmasi dan sampaikan doa terbaik Anda.</p>
+
+    <div class="card">
+      <form id="rsvpForm">
+        <input id="nama" placeholder="Nama lengkap" required>
+        <select id="status" required>
+          <option value="">Konfirmasi kehadiran</option>
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak hadir">Tidak dapat hadir</option>
+        </select>
+        <input id="jumlah" type="number" min="1" max="10"
+               value="1" required placeholder="Jumlah tamu">
+        <textarea id="pesan" rows="4" placeholder="Ucapan dan doa..."></textarea>
+        <button type="submit">Kirim via WhatsApp 💌</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BUKU TAMU -->
+<section>
+  <div class="container reveal">
+    <p class="eyebrow">WISHES FOR THE COUPLE</p>
+    <h2>Ucapan &amp; Doa</h2>
+    <p>Tinggalkan pesan manis untuk kedua mempelai.</p>
+
+    <div class="card">
+      <form id="guestForm">
+        <input id="guestName" placeholder="Nama kamu" required>
+        <textarea id="guestMessage" rows="3"
+                  placeholder="Tulis ucapan dan doa..." required></textarea>
+        <button type="submit">Kirim Ucapan ❤️</button>
+      </form>
+      <div id="guestList"></div>
+      <p style="font-size:12px;margin-top:15px">
+        Ucapan di halaman ini hanya tersimpan di browser perangkat ini.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PENUTUP -->
+<footer>
+  <div class="flower" style="color:white">❀</div>
+  <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami</p>
+  <p>atas kehadiran serta doa restu Anda.</p>
+  <h1 class="script" style="margin:25px 0">Andi &amp; Putri</h1>
+  <p>Terima kasih ❤️</p>
+  <p style="font-size:11px;margin-top:25px">Made with love ♡</p>
+</footer>
+
+</main>
+
+<script>
+// ======================================
+// PENGATURAN UNDANGAN - EDIT DI SINI
+// ======================================
+
+// Tanggal acara dalam zona waktu WIB (UTC+7)
+const tanggalNikah = new Date("2026-12-20T08:00:00+07:00").getTime();
+
+// Nomor WhatsApp tuan rumah.
+// Gunakan kode negara tanpa tanda +.
+// Contoh: 6281234567890
+const nomorWhatsApp = "6281234567890";
+
+// ======================================
+// BUKA UNDANGAN
+// ======================================
+function bukaUndangan() {
+  document.getElementById("cover").classList.add("closed");
+  document.getElementById("main").style.display = "block";
+  document.body.style.overflow = "auto";
+  window.scrollTo(0, 0);
+}
+
+// ======================================
+// COUNTDOWN
+// ======================================
+function updateCountdown() {
+  const selisih = tanggalNikah - Date.now();
+  const msg = document.getElementById("countdownMessage");
+
+  if (selisih <= 0) {
+    ["days","hours","minutes","seconds"].forEach(id => {
+      document.getElementById(id).textContent = "0";
+    });
+    msg.textContent = "Hari bahagia telah tiba! ❤️";
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(selisih / 86400000);
+  document.getElementById("hours").textContent =
+    Math.floor(selisih / 3600000) % 24;
+  document.getElementById("minutes").textContent =
+    Math.floor(selisih / 60000) % 60;
+  document.getElementById("seconds").textContent =
+    Math.floor(selisih / 1000) % 60;
+
+  msg.textContent = "Kami menantikan kehadiran Anda ❤️";
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ======================================
+// SALIN NOMOR REKENING
+// ======================================
+async function salin(id, tombol) {
+  const teks = document.getElementById(id).textContent.trim();
+
+  try {
+    await navigator.clipboard.writeText(teks);
+  } catch (error) {
+    const area = document.createElement("textarea");
+    area.value = teks;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    const berhasil = document.execCommand("copy");
+    area.remove();
+
+    if (!berhasil) {
+      alert("Gagal menyalin. Silakan salin manual: " + teks);
+      return;
+    }
+  }
+
+  const teksAsli = tombol.textContent;
+  tombol.textContent = "✓ Berhasil Disalin!";
+  setTimeout(() => tombol.textContent = teksAsli, 2000);
+}
+
+// ======================================
+// RSVP VIA WHATSAPP
+// ======================================
+document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const nama = document.getElementById("nama").value.trim();
+  const status = document.getElementById("status").value;
+  const jumlah = document.getElementById("jumlah").value;
+  const pesan = document.getElementById("pesan").value.trim();
+
+  const teks =
+    `Halo, saya ingin mengonfirmasi undangan pernikahan Andi & Putri.\n\n` +
+    `Nama: ${nama}\n` +
+    `Kehadiran: ${status}\n` +
+    `Jumlah tamu: ${jumlah}\n` +
+    `Ucapan: ${pesan || "-"}`;
+
+  window.open(
+    "https://wa.me/" + nomorWhatsApp + "?text=" +
+    encodeURIComponent(teks),
+    "_blank",
+    "noopener"
+  );
+});
+
+// ======================================
+// UCAPAN TAMU - PENYIMPANAN LOKAL
+// ======================================
+const guestForm = document.getElementById("guestForm");
+const guestList = document.getElementById("guestList");
+
+function tampilkanUcapan(nama, pesan) {
+  const kartu = document.createElement("div");
+  kartu.className = "guest";
+
+  const namaEl = document.createElement("strong");
+  namaEl.textContent = nama;
+
+  const pesanEl = document.createElement("p");
+  pesanEl.textContent = pesan;
+
+  kartu.append(namaEl, pesanEl);
+  guestList.prepend(kartu);
+}
+
+guestForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const nama = document.getElementById("guestName").value.trim();
+  const pesan = document.getElementById("guestMessage").value.trim();
+
+  if (!nama || !pesan) return;
+
+  tampilkanUcapan(nama, pesan);
+  guestForm.reset();
+});
+
+// ======================================
+// ANIMASI SAAT BAGIAN MUNCUL
+// ======================================
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
